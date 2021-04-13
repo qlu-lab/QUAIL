@@ -168,7 +168,8 @@ $ Rscript QUAIL_vPGS.R \
   --num_levels 500 \
   --num_cores 5
 ```
-The choice of `--num_levels` can be found in the Genome-wide vQTL analysis part.
+Note that 
+* The choice of `--num_levels` can be found in the Genome-wide vQTL analysis part.
 
 The final result has the following fields:
 
