@@ -35,6 +35,7 @@ $ Rscript Obtain_Rank_Score.R \
   --num_levels 2000 \
   --num_cores 5
 ```
+#### Explanation of Input for Step1
 
 ### Step2: Perform Genome-wide vQTL analysis
 ```bash
@@ -47,8 +48,9 @@ $ Rscript QUAIL_vQTL.R \
   --start 1 \
   --end 1000
 ```
+#### Explanation of Input for Step2
 
-### Explanation of Output
+#### Explanation of Output
 
 The final result has the following fields:
 
