@@ -59,7 +59,7 @@ The input genotype file need to be in the plink bed/bim/fam format. The path onl
 
 ### vPGS file
 
-The input vPGS file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the vPGS. Here is an example of the phenotype file `pheno.txt`:
+The input vPGS file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the vPGS. Here is an example of the vPGS file `vpgs.txt`:
 ```
 FID	IID	vpgs
 1	1	-0.166044638683817
@@ -145,7 +145,7 @@ The following script evaluate the performance of vPGS from the `test.all.score` 
 ```bash
 $ Rscript QUAIL_vPGS.R \
   --pheno pheno.txt \
-  --vpgs  test.all.score \
+  --vpgs  vpgs.txt \
   --covar covar.txt \
   --output output_vpgs.txt \
   --num_levels 500 \
