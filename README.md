@@ -27,7 +27,26 @@ There are two steps to conduct the Genome-wide vQTL analysis:
 
 ### Step1: Obtain the quantile integrated rank score
 
+```bash
+$ Rscript Obtain_Rank_Score.R \
+  --pheno pheno.txt \
+  --covar covar.txt \
+  --output pheno_rank_score.txt \
+  --num_levels 2000 \
+  --num_cores 5
+```
+
 ### Step2: Perform Genome-wide vQTL analysis
+```bash
+$ Rscript QUAIL_vQTL.R \
+  --pheno_rs pheno_rank_score.txt \
+  --geno test \
+  --covar covar.txt \
+  --output output_1-100.txt \
+  --num_cores 5 \
+  --start 1 \
+  --end 1000
+```
 
 ### Explanation of Output
 
