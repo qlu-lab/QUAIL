@@ -123,7 +123,7 @@ QUAIL <- function(i){
     # Run regression between Y_QI and G_star
     Y_QI <- sqrt(length(SNP))*pheno_lm[, 3]
     coeff <- summary(lm(Y_QI ~ G_star))$coefficients
-    QUAIL_results <- c(snp_name, chr, bp, a1, a2, maf, coeff[2, c(1, 2, 4)], length(Y_QI))
+    QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff[2, c(1, 2, 4)], length(Y_QI))
     return(QUAIL_results)
 }
 
@@ -132,7 +132,7 @@ Fit_QUAIL <- function(start = snp_start, end = snp_end){
     df_out <- mclapply2(start:end, QUAIL, mc.cores = num_cores)
     df_out <- do.call(rbind, df_out)
     df_out <- as.data.frame(df_out)
-    colnames(df_out) <-  c('SNP','CHR', 'BP', 'A1', 'A2', 'FREQ', 'BETA','SE','P', 'N')
+    colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA','SE','P', 'N')
     return(df_out)
 }
 
