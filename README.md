@@ -52,4 +52,14 @@ $ Rscript QUAIL_vQTL.R \
 
 ## Evaluate the predictive performance of vPGS
 
+```bash
+$ Rscript QUAIL_vPGS.R \
+  --pheno pheno.txt \
+  --vpgs  test.all.score \
+  --covar covar.txt \
+  --output output_vpgs.txt \
+  --num_levels 500 \
+  --num_cores 5
+```
+
 ## Credits
