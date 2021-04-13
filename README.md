@@ -50,6 +50,20 @@ $ Rscript QUAIL_vQTL.R \
 
 ### Explanation of Output
 
+The final result has the following fields:
+
+| Column | Description |
+|-----|-------------|
+| CHR | The chromosomal location of the gene |
+| Nsnps | Number of SNPs in the gene expression imputation model |
+| Nsnps.used | Number of SNPs used in building the association test |                                                 
+| Gene | The name of the gene |
+| Matching | The matching method for analysing the trios |
+| Beta | The estimated effect size |
+| SE | The estimated standard error of Beta |
+| Z | The Z test statistic for testing transmission disequilibrium |
+| P | The P-value for testing transmission disequilibrium |
+
 ## Evaluate the predictive performance of vPGS
 
 ```bash
@@ -61,5 +75,19 @@ $ Rscript QUAIL_vPGS.R \
   --num_levels 500 \
   --num_cores 5
 ```
+
+The final result has the following fields:
+
+| Column | Description |
+|-----|-------------|
+| CHR | The chromosomal location of the gene |
+| Nsnps | Number of SNPs in the gene expression imputation model |
+| Nsnps.used | Number of SNPs used in building the association test |                                                 
+| Gene | The name of the gene |
+| Matching | The matching method for analysing the trios |
+| Beta | The estimated effect size |
+| SE | The estimated standard error of Beta |
+| Z | The Z test statistic for testing transmission disequilibrium |
+| P | The P-value for testing transmission disequilibrium |
 
 ## Credits
