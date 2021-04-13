@@ -179,5 +179,8 @@ The final result has the following fields:
 | P | The P-value for testing variance effects for vPGS |
 | N | Sample size |
 
+## License
+
+All rights reserved for [Lu-Laboratory](http://qlu-lab.org/)
 
 ## Credits
