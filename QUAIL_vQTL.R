@@ -34,6 +34,7 @@ num_cores <- opt$num_cores
 snp_start <- opt$start
 snp_end <- opt$end
 
+
 geno_bed <- suppressMessages(BEDMatrix((paste0(genotype, ".bed"))))
 geno_bim <- fread(paste0(genotype, ".bim"))
 
@@ -103,6 +104,10 @@ QUAIL <- function(i){
     # Obtain the SNP information
     SNP <- geno_bed[index_geno, i]
     snp_name <- geno_bim$V2[i]
+    chr <- geno_bim$V1[i]
+    bp <- geno_bim$V4[i]
+    a1 <- geno_bim$V5[i]
+    a2 <- geno_bim$V6[i]
     maf <- sqrt(sum(SNP == 2, na.rm=T)/sum(!is.na(SNP)))
 
     # Impute the NA SNP with 2*maf
@@ -118,7 +123,7 @@ QUAIL <- function(i){
     # Run regression between Y_QI and G_star
     Y_QI <- sqrt(length(SNP))*pheno_lm[, 3]
     coeff <- summary(lm(Y_QI ~ G_star))$coefficients
-    QUAIL_results <- c(snp_name, maf, coeff[2, c(1, 2, 4)])
+    QUAIL_results <- c(snp_name, chr, bp, a1, a2, maf, coeff[2, c(1, 2, 4)], length(Y_QI))
     return(QUAIL_results)
 }
 
@@ -127,7 +132,7 @@ Fit_QUAIL <- function(start = snp_start, end = snp_end){
     df_out <- mclapply2(start:end, QUAIL, mc.cores = num_cores)
     df_out <- do.call(rbind, df_out)
     df_out <- as.data.frame(df_out)
-    colnames(df_out)[1:5] <-  c('SNP','MAF','BETA','SE','P')
+    colnames(df_out) <-  c('SNP','CHR', 'BP', 'A1', 'A2', 'FREQ', 'BETA','SE','P', 'N')
     return(df_out)
 }
 

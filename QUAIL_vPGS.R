@@ -146,12 +146,10 @@ cat("Begin evaluating vPGS performance:\n")
 m_vpgs_covar <- lm(vpgs ~ ., data = covar_no_vpgs)
 vpgs_star <- m_vpgs_covar$residual
 
-sqrt(sum(vpgs_star^2))
-
 # Run regression between Y_QI and G_star
 Y_QI <- sqrt(length(vpgs_star))*int_rank_score
 coeff_vpgs <- summary(lm(Y_QI ~ vpgs_star))$coefficients
-df_out <- data.frame(BETA = coeff_vpgs[2, 1], SE = coeff_vpgs[2, 2], P =coeff_vpgs[2, 4])
+df_out <- data.frame(BETA = coeff_vpgs[2, 1], SE = coeff_vpgs[2, 2], P =coeff_vpgs[2, 4], N = length(vpgs_star))
 cat("The evaluation result is .\n")
 print(df_out)
 # Write out the results
