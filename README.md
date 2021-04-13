@@ -132,9 +132,10 @@ where the inputs are
 | start          | (Optional) Index of SNP that starts computing |
 | end       | (Optional) Index of SNP that ends computing |
 
-For both genotype vQTL analysis and vPGS analysis(described following), the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when the sample size is around 10000 and 2000 levels when the sample size > 10000. However, you can check the robustness of your results by using more levels.
+Note that 
+* For both genotype vQTL analysis and vPGS analysis(described following), the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when the sample size is around 10000 and 2000 levels when the sample size > 10000. However, you can check the robustness of your results by using more levels.
 
-The script is designed to run on chromosome segments to facilitate parallel computation on the cluster. If `--start` or `--end` is not specified, the script will perform the analysis on all SNPs in the plink `test` file.
+* The script is designed to run on chromosome segments to facilitate parallel computation on the cluster. If `--start` or `--end` is not specified, the script will perform the analysis on all SNPs in the plink `test` file.
 
 
 
