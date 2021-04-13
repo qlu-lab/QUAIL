@@ -26,7 +26,8 @@ The software is developed using R and tested in Linux environments. The statisti
 There are two steps to conduct the Genome-wide vQTL analysis:
 
 ### Step1: Obtain the quantile integrated rank score
-The following analysis transform the phenotype in pheno.txt into the quantile integrated rank score after adjusting the covaraites in covar.txt using 2000 quantile levels and 5 cores are used for parallel computing.
+#### Example:
+The following codes transform the phenotype in pheno.txt into the quantile integrated rank score after adjusting the covaraites in covar.txt using 2000 quantile levels and 5 cores are used for parallel computing.
 ```bash
 $ Rscript Obtain_Rank_Score.R \
   --pheno pheno.txt \
@@ -46,6 +47,9 @@ where the inputs are
 | num_cores        | Number of cores for parellel computing |
 
 ### Step2: Perform Genome-wide vQTL analysis
+
+#### Example:
+The following codes perform Genome-wide vQTL analysis from the 1-1000 SNPs in test using the quantile integrated rank score in step1 output pheno_rank_score.txt adjusting the covaraites in covar.txt and 5 cores are used for parallel computing.
 ```bash
 $ Rscript QUAIL_vQTL.R \
   --pheno_rs pheno_rank_score.txt \
