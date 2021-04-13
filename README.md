@@ -1,4 +1,4 @@
-# QUAIL: a statistical framework to estimate genetic effects on the variance of quantitative traits
+# QUAIL: a unified framework to estimate genetic effects on the variance of quantitative traits
 
 ## Introduction
 
