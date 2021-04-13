@@ -9,13 +9,6 @@ QUAIL (**qua**ntile **i**ntegral **l**inear model) is a quantile regression-base
 
 ![QUAIL workflow](https://github.com/qlu-lab/QUAIL/blob/main/Fig/QUAIL_Workflow.png)
 
-You can download QUAIL by:
-
-```
-$ git clone https://github.com/qlu-lab/QUAIL
-$ cd ./QUAIL
-```
-
 ## Updates
 - Apr 13, 2021: Initial release. Release the codes for Genome-wide vQTL analysis and evaluating the vPGS performance.
 
@@ -61,6 +54,12 @@ FID	IID	sex	age	pc1
 ```
 
 ### Genotype file
+You can download QUAIL by:
+
+```
+$ git clone https://github.com/qlu-lab/QUAIL
+$ cd ./QUAIL
+```
 
 The input genotype file need to be in the plink bed/bim/fam format. The path only inlcudes the prefix not the suffix. For exmaple, the path to input genotype file is `geno` where the genotype files are `geno.bed, geno.bim, geno.fam`.
 
@@ -78,6 +77,7 @@ FID	IID	vpgs
 ...
 ...
 ```
+## Download QUAIL
 
 ## Genome-wide vQTL analysis
 There are two steps to conduct the Genome-wide vQTL analysis:
