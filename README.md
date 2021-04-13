@@ -61,12 +61,13 @@ The input genotype file need to be in the plink bed/bim/fam format. The path onl
 
 The input vPGS file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the vPGS. Here is an example of the vPGS file `vpgs.txt`:
 ```
-FID	IID	vpgs
-1	1	-0.166044638683817
-2	2	0.325459663014065
-3	3	-0.0589986740920006
-4	4	0.176636938025438
-5	5	0.266151552296392
+FID	   IID	     vpgs
+1000	1000	-0.166044638683817
+1001	1001	0.325459663014065
+1002	1002	-0.0589986740920006
+1003	1003	0.176636938025438
+1004	1004	0.266151552296392
+1005	1005	0.376450240002708
 ...
 ...
 ```
