@@ -22,6 +22,8 @@ The software is developed using R and tested in Linux environments. The statisti
 * [parallel](https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) (>=3.5.1)
 * [BEDMatrix](https://cran.r-project.org/web/packages/BEDMatrix/index.html) (>=2.0.3)
 
+## Input Data
+
 ## Genome-wide vQTL analysis
 There are two steps to conduct the Genome-wide vQTL analysis:
 
