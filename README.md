@@ -36,12 +36,12 @@ The input Covariate file need to be a n x (m+2) table, where m is the number of 
 
 The input genotype file need to be in the plink bed/bim/fam format. The path only inlcudes the prefix not the suffix. For exmaple, the path to input genotype file is
 ```bash
-test
+geno
 ```
 where the genotype files are 
 
 ```bash
-test.bed, test.bim, test.fam
+geno.bed, geno.bim, geno.fam
 ```
 
 ## Genome-wide vQTL analysis
@@ -75,7 +75,7 @@ The following script perform Genome-wide vQTL analysis from the `1`-`1000` SNPs 
 ```bash
 $ Rscript QUAIL_vQTL.R \
   --pheno_rs pheno_rank_score.txt \
-  --geno test \
+  --geno geno \
   --covar covar.txt \
   --output output_1-100.txt \
   --num_cores 5 \
