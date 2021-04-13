@@ -132,7 +132,11 @@ where the inputs are
 | start          | (Optinoal) Index of SNP that starts computing |
 | end       | (Optinoal) Index of SNP that ends computing |
 
+For both genotype vQTL analysis and vPGS analysis(described following), the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when sample size is around 10000 and 2000 levels when sample size > 10000. However, you can check the robustness of your results by using more levels.
+
 The script is designed to run on chromosome segments to facilitate parallel computation on the cluster. If `--start` or `--end` is not specified, the script will perform the analysis on all SNPs in the plink `test` file.
+
+
 
 #### Explanation of Output
 
@@ -164,8 +168,7 @@ $ Rscript QUAIL_vPGS.R \
   --num_cores 5
   
 ```
-
-For both genotype vQTL analysis and vPGS analysis, the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when sample size around 10000 and 2000 levels when sample size > 10000. However, you can check the robustness of your results by using more levels.
+See the choice of the `--num_levels` in Genome-wide vQTL analysis part.
 
 The final result has the following fields:
 
