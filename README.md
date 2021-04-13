@@ -22,6 +22,16 @@ The software is developed using R and tested in Linux environments. The statisti
 * [parallel](https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf) (>=3.5.1)
 * [BEDMatrix](https://cran.r-project.org/web/packages/BEDMatrix/index.html) (>=2.0.3)
 
+## Download QUAIL
+
+You can download QUAIL by:
+
+```
+$ git clone https://github.com/qlu-lab/QUAIL
+$ cd ./QUAIL
+```
+
+
 ## Input Data Format
 ### Phenotype file
 
@@ -54,12 +64,6 @@ FID	IID	sex	age	pc1
 ```
 
 ### Genotype file
-You can download QUAIL by:
-
-```
-$ git clone https://github.com/qlu-lab/QUAIL
-$ cd ./QUAIL
-```
 
 The input genotype file need to be in the plink bed/bim/fam format. The path only inlcudes the prefix not the suffix. For exmaple, the path to input genotype file is `geno` where the genotype files are `geno.bed, geno.bim, geno.fam`.
 
@@ -77,7 +81,6 @@ FID	IID	vpgs
 ...
 ...
 ```
-## Download QUAIL
 
 ## Genome-wide vQTL analysis
 There are two steps to conduct the Genome-wide vQTL analysis:
