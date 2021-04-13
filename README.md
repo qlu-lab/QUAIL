@@ -65,8 +65,9 @@ where the inputs are
 | covar        | The path to the covariate file |                                                    
 | output     | The path to the output summary statistics file |
 | num_cores        | Number of cores for parellel computing |
-| start         | (Optinoal) Index of SNP that starts computing. |
-| end       | (Optinoal) Index of SNP that ends computing. |
+| start         | (Optinoal) Index of SNP that starts computing |
+| end       | (Optinoal) Index of SNP that ends computing |
+
 
 #### Explanation of Output
 
