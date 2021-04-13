@@ -25,7 +25,7 @@ The software is developed using R and tested in Linux environments. The statisti
 ## Input Data Format
 ### Phenotype file
 
-The input phenotype file need to be a n x 3 table. The columns in order are the FID, IID and the phenotype. Here is an example of the phenotype file:
+The input phenotype file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the phenotype. Here is an example of the phenotype file:
 
 
 ### Covariate file
