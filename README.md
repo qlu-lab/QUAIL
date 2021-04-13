@@ -145,6 +145,7 @@ The final result has the following fields:
 | BP | Base pair position |                                                 
 | A1 | Allele 1 (effect allele) |
 | A2 | Allele 2 (non-effect allele) |
+| FREQ | allele frequency of allele 1 |
 | BETA | The estimated effect size |
 | SE | The estimated standard error of BETA |
 | P | The P-value for testing variance effects |
