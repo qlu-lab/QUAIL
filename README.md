@@ -49,7 +49,7 @@ where the inputs are
 ### Step2: Perform Genome-wide vQTL analysis
 
 #### Example:
-The following script perform Genome-wide vQTL analysis from the `1`-`1000` SNPs in test using the quantile integrated rank score in step1 output `pheno_rank_score.txt` adjusting the covaraites in `covar.txt` and 5 cores are used for parallel computing. `5` cores are used for parallel computing.
+The following script perform Genome-wide vQTL analysis from the `1`-`1000` SNPs in plink genotype file `test` using the quantile integrated rank score in step1 output `pheno_rank_score.txt` adjusting the covaraites in `covar.txt` and 5 cores are used for parallel computing. `5` cores are used for parallel computing.
 ```bash
 $ Rscript QUAIL_vQTL.R \
   --pheno_rs pheno_rank_score.txt \
