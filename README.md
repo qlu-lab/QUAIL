@@ -166,7 +166,6 @@ $ Rscript QUAIL_vPGS.R \
   --output output_vpgs.txt \
   --num_levels 500 \
   --num_cores 5
-  
 ```
 See the choice of the `--num_levels` in Genome-wide vQTL analysis part.
 
