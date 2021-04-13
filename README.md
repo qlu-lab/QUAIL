@@ -40,7 +40,7 @@ FID	IID	bmi
 
 ### Covariate file
 
-The input Covariate file need to be a n x (m+2) table, where m is the number of covariates to included. The columns in oredr are the FID, IID and the covariates. Here is an example of the phenotype file:
+The input Covariate file need to be a n x (m+2) table, where m is the number of covariates to included. The columns in oredr are the FID, IID and the covariates. Here is an example of the Covariate file:
 
 ```
 FID	IID	sex	age	pc1
