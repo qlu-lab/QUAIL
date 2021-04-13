@@ -35,7 +35,7 @@ $ cd ./QUAIL
 ## Input Data Format
 ### Phenotype file
 
-The input phenotype file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the phenotype. Here is an example of the phenotype file `pheno.txt`:
+The input phenotype file need to be an n x 3 table, where n is the sample size. The columns in order are the FID, IID, and the phenotype. Here is an example of the phenotype file `pheno.txt`:
 ```
 FID	IID	bmi
 1	1	31.0920070855422
@@ -50,7 +50,7 @@ FID	IID	bmi
 
 ### Covariate file
 
-The input Covariate file need to be a n x (m+2) table, where m is the number of covariates to included. The columns in oredr are the FID, IID and the covariates. Here is an example of the covariate file `covar.txt`:
+The input Covariate file needs to be an n x (m+2) table, where m is the number of covariates to include. The columns in order are the FID, IID, and the covariates. Here is an example of the covariate file `covar.txt`:
 
 ```
 FID	IID	sex	age	pc1
@@ -65,11 +65,11 @@ FID	IID	sex	age	pc1
 
 ### Genotype file
 
-The input genotype file need to be in the plink bed/bim/fam format. The path only inlcudes the prefix not the suffix. For exmaple, the path to input genotype file is `geno` where the genotype files are `geno.bed, geno.bim, geno.fam`.
+The input genotype file needs to be in the plink bed/bim/fam format. The path only includes the prefix, not the suffix. For example, the path to the input genotype file is `geno` where the genotype files are `geno.bed, geno.bim, geno.fam`.
 
 ### vPGS file
 
-The input vPGS file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the vPGS. Here is an example of the vPGS file `vpgs.txt`:
+The input vPGS file needs to be an n x 3 table, where n is the sample size. The columns in order are the FID, IID, and the vPGS. Here is an example of the vPGS file `vpgs.txt`:
 ```
 FID	IID	vpgs
 1000	1000	-0.166044638683817
@@ -104,7 +104,7 @@ where the inputs are
 | covar         | The path to the covariate file |
 | output        | The path to the output phenotypic rank score file |                                                    
 | num_levels     | Number of quantile levels to fit |
-| num_cores        | Number of cores for parellel computing |
+| num_cores        | Number of cores for parallel computing |
 
 ### Step2: Perform genome-wide vQTL analysis
 
@@ -128,11 +128,11 @@ where the inputs are
 | geno         | The path of the genotype file following the [PLINK format](https://www.cog-genomics.org/plink/1.9). |
 | covar        | The path to the covariate file |                                                    
 | output     | The path to the output summary statistics file |
-| num_cores        | Number of cores for parellel computing |
-| start          | (Optinoal) Index of SNP that starts computing |
-| end       | (Optinoal) Index of SNP that ends computing |
+| num_cores        | Number of cores for parallel computing |
+| start          | (Optional) Index of SNP that starts computing |
+| end       | (Optional) Index of SNP that ends computing |
 
-For both genotype vQTL analysis and vPGS analysis(described following), the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when sample size is around 10000 and 2000 levels when sample size > 10000. However, you can check the robustness of your results by using more levels.
+For both genotype vQTL analysis and vPGS analysis(described following), the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when the sample size is around 10000 and 2000 levels when the sample size > 10000. However, you can check the robustness of your results by using more levels.
 
 The script is designed to run on chromosome segments to facilitate parallel computation on the cluster. If `--start` or `--end` is not specified, the script will perform the analysis on all SNPs in the plink `test` file.
 
@@ -167,7 +167,7 @@ $ Rscript QUAIL_vPGS.R \
   --num_levels 500 \
   --num_cores 5
 ```
-See the choice of the `--num_levels` in Genome-wide vQTL analysis part.
+See the choice of the `--num_levels` in the Genome-wide vQTL analysis part.
 
 The final result has the following fields:
 
