@@ -165,7 +165,7 @@ $ Rscript QUAIL_vPGS.R \
   
 ```
 
-For both genotype vQTL analysis and vPGS analysis, the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when sample size < 50000 and 2000 levels when sample size > 50000. However, you can check the robustness of your results by using more levels.
+For both genotype vQTL analysis and vPGS analysis, the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when sample size around 10000 and 2000 levels when sample size > 10000. However, you can check the robustness of your results by using more levels.
 
 The final result has the following fields:
 
