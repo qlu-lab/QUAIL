@@ -34,15 +34,7 @@ The input Covariate file need to be a n x (m+2) table, where m is the number of 
 
 ### Genotype file
 
-The input genotype file need to be in the plink bed/bim/fam format. The path only inlcudes the prefix not the suffix. For exmaple, the path to input genotype file is
-```bash
-geno
-```
-where the genotype files are 
-
-```bash
-geno.bed, geno.bim, geno.fam
-```
+The input genotype file need to be in the plink bed/bim/fam format. The path only inlcudes the prefix not the suffix. For exmaple, the path to input genotype file is `geno` where the genotype files are `geno.bed, geno.bim, geno.fam`.
 
 ## Genome-wide vQTL analysis
 There are two steps to conduct the Genome-wide vQTL analysis:
