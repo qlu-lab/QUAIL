@@ -23,6 +23,11 @@ The software is developed using R and tested in Linux environments. The statisti
 * [BEDMatrix](https://cran.r-project.org/web/packages/BEDMatrix/index.html) (>=2.0.3)
 
 ## Genome-wide vQTL analysis
+There are two steps to conduct the Genome-wide vQTL analysis:
+
+### Step1: Obtain the quantile integrated rank score
+
+### Step2: Perform Genome-wide vQTL analysis
 
 ### Explanation of Output
 
