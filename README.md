@@ -80,15 +80,15 @@ The final result has the following fields:
 
 | Column | Description |
 |-----|-------------|
-| CHR | The chromosomal location of the gene |
-| Nsnps | Number of SNPs in the gene expression imputation model |
-| Nsnps.used | Number of SNPs used in building the association test |                                                 
-| Gene | The name of the gene |
-| Matching | The matching method for analysing the trios |
-| Beta | The estimated effect size |
-| SE | The estimated standard error of Beta |
-| Z | The Z test statistic for testing transmission disequilibrium |
-| P | The P-value for testing transmission disequilibrium |
+| SNP | rsID |
+| CHR | Chromosome |
+| BP | Base pair position |                                                 
+| A1 | Allele 1 (effect allele) |
+| A2 | Allele 2 (non-effect allele) |
+| BETA | The estimated effect size |
+| SE | The estimated standard error of BETA |
+| P | The P-value for testing variance effects |
+| N | Sample size |
 
 ## Evaluate the predictive performance of vPGS
 #### Example:
@@ -107,14 +107,10 @@ The final result has the following fields:
 
 | Column | Description |
 |-----|-------------|
-| CHR | The chromosomal location of the gene |
-| Nsnps | Number of SNPs in the gene expression imputation model |
-| Nsnps.used | Number of SNPs used in building the association test |                                                 
-| Gene | The name of the gene |
-| Matching | The matching method for analysing the trios |
-| Beta | The estimated effect size |
-| SE | The estimated standard error of Beta |
-| Z | The Z test statistic for testing transmission disequilibrium |
-| P | The P-value for testing transmission disequilibrium |
+| BETA | The estimated effect size of vPGS to phenotypic variability|
+| SE | The estimated standard error of BETA |
+| P | The P-value for testing variance effects for vPGS |
+| N | Sample size |
+
 
 ## Credits
