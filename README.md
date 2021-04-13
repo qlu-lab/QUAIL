@@ -57,6 +57,20 @@ FID	IID	sex	age	pc1
 
 The input genotype file need to be in the plink bed/bim/fam format. The path only inlcudes the prefix not the suffix. For exmaple, the path to input genotype file is `geno` where the genotype files are `geno.bed, geno.bim, geno.fam`.
 
+### vPGS file
+
+The input vPGS file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the vPGS. Here is an example of the phenotype file `pheno.txt`:
+```
+FID	IID	vpgs
+1	1	-0.166044638683817
+2	2	0.325459663014065
+3	3	-0.0589986740920006
+4	4	0.176636938025438
+5	5	0.266151552296392
+...
+...
+```
+
 ## Genome-wide vQTL analysis
 There are two steps to conduct the Genome-wide vQTL analysis:
 
