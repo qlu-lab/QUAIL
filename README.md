@@ -6,7 +6,7 @@ QUAIL (**qua**ntile **i**ntegral **l**inear model) is a quantile regression-base
 
 ![QUAIL workflow](https://github.com/qlu-lab/QUAIL/blob/main/Fig/QUAIL_Workflow.png)
 
-
+## Updates
 
 
 
