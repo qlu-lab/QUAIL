@@ -39,15 +39,11 @@ where the inputs are
 
 | Flag | Description |
 |-----|------------------------------------------------------------------------|
-| tissue      | One of the above brain tissues |
-| chr         | The chromosomal location of the gene |
-| gene        | The name of the Gene |                                                    
-| fam     | The path to the fam file following the [PLINK format](https://www.cog-genomics.org/plink/1.9/formats#fam)<br>The sample IDs in the fam file should also be consistent with the sample IDs in the vcf file |
-| pred        | The path to the prediciton matrix |
-| vcf         | The path to the phased and QCed vcf file |
-| out       | The path to the output file |
-| qc       | Removing the SNPs with imputation quality < 0.8 or MAF < 0.01 |
-| matching       | Preferred pseudo sibling matching method, choose among 3sib, 1sib, and 2parent |
+| pheno      | The path to the phenotype file |
+| covar         | The path to the covariate file |
+| output        | The path to the output phenotypic rank score file |                                                    
+| num_levels     | Number of quantile levels to fit |
+| num_cores        | Number of cores for parellel computing |
 
 ### Step2: Perform Genome-wide vQTL analysis
 ```bash
@@ -64,15 +60,13 @@ where the inputs are
 
 | Flag | Description |
 |-----|------------------------------------------------------------------------|
-| tissue      | One of the above brain tissues |
-| chr         | The chromosomal location of the gene |
-| gene        | The name of the Gene |                                                    
-| fam     | The path to the fam file following the [PLINK format](https://www.cog-genomics.org/plink/1.9/formats#fam)<br>The sample IDs in the fam file should also be consistent with the sample IDs in the vcf file |
-| pred        | The path to the prediciton matrix |
-| vcf         | The path to the phased and QCed vcf file |
-| out       | The path to the output file |
-| qc       | Removing the SNPs with imputation quality < 0.8 or MAF < 0.01 |
-| matching       | Preferred pseudo sibling matching method, choose among 3sib, 1sib, and 2parent |
+| pheno_rs      | The path to output phenotypic rank score file from step1|
+| geno         | The path of the genotype file following the [PLINK format](https://www.cog-genomics.org/plink/1.9). |
+| covar        | The path to the covariate file |                                                    
+| output     | The path to the output summary statistics file |
+| num_cores        | Number of cores for parellel computing |
+| start         | (Optinoal) Index of SNP that starts computing. |
+| end       | (Optinoal) Index of SNP that ends computing. |
 
 #### Explanation of Output
 
