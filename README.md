@@ -145,8 +145,8 @@ The final result has the following fields:
 
 | Column | Description |
 |-----|-------------|
-| SNP | rs ID |
 | CHR | Chromosome |
+| SNP | rs ID |
 | BP | Base pair position |                                                 
 | A1 | Allele 1 (effect allele) |
 | A2 | Allele 2 (non-effect allele) |
