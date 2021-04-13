@@ -24,8 +24,25 @@ The software is developed using R and tested in Linux environments. The statisti
 
 ## Input Data Format
 ### Phenotype file
+
+The input phenotype file need to be a n x 3 table. The columns in oredr are the FID, IID and the phenotype. Here is an example of the phenotype file:
+
+
 ### Covariate file
+
+The input Covariate file need to be a n x (m+2) table, where m is the number of covariates to included. The columns in oredr are the FID, IID and the covariates. Here is an example of the phenotype file:
+
 ### Genotype file
+
+The input genotype file need to be in the plink bed/bim/fam format. The path only inlcudes the prefix not the suffix. For exmaple, the path to input genotype file is
+```bash
+test
+```
+where the genotype files are 
+
+```bash
+test.bed, test.bim, test.fam
+```
 
 ## Genome-wide vQTL analysis
 There are two steps to conduct the Genome-wide vQTL analysis:
