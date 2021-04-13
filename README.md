@@ -26,6 +26,16 @@ The software is developed using R and tested in Linux environments. The statisti
 ### Phenotype file
 
 The input phenotype file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the phenotype. Here is an example of the phenotype file:
+```
+FID	IID	bmi
+1	1	31.0920070855422
+2	2	34.9722947258896
+3	3	26.651358296193
+4	4	11.3265202767703
+5	5	28.1784063613473
+...
+...
+```
 
 
 ### Covariate file
@@ -33,17 +43,14 @@ The input phenotype file need to be a n x 3 table, where n is the sample size. T
 The input Covariate file need to be a n x (m+2) table, where m is the number of covariates to included. The columns in oredr are the FID, IID and the covariates. Here is an example of the phenotype file:
 
 ```
-FID	IID	sex	age	pc1	pc2
-1	1	0	40	0.0496566810517587	-0.588770531605
-2	2	1	41	-0.30689382604118	-0.854438895964933
-3	3	1	42	0.0662231532694345	-0.5073434348297
-4	4	0	43	0.653681021333332	0.62307253359904
-5	5	1	44	0.50856163868585	-0.122349926577676
-6	6	1	45	0.642366243252446	-0.430113131998065
-7	7	1	46	-0.1262565275885	0.271819632499038
-8	8	1	47	-0.0892411555856866	0.36101371950426
-9	9	0	48	0.146664978557996	0.222293667196472
-10	10	0	49	0.635422883848335	0.112072407042979
+FID	IID	sex	age	pc1
+1	1	0	40	0.0496566810517587
+2	2	1	41	-0.30689382604118
+3	3	1	42	0.0662231532694345
+4	4	0	43	0.653681021333332
+5	5	1	44	0.50856163868585
+...
+...
 ```
 
 ### Genotype file
