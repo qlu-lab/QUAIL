@@ -35,7 +35,19 @@ $ Rscript Obtain_Rank_Score.R \
   --num_levels 2000 \
   --num_cores 5
 ```
-#### Explanation of Input for Step1
+where the inputs are
+
+| Flag | Description |
+|-----|------------------------------------------------------------------------|
+| tissue      | One of the above brain tissues |
+| chr         | The chromosomal location of the gene |
+| gene        | The name of the Gene |                                                    
+| fam     | The path to the fam file following the [PLINK format](https://www.cog-genomics.org/plink/1.9/formats#fam)<br>The sample IDs in the fam file should also be consistent with the sample IDs in the vcf file |
+| pred        | The path to the prediciton matrix |
+| vcf         | The path to the phased and QCed vcf file |
+| out       | The path to the output file |
+| qc       | Removing the SNPs with imputation quality < 0.8 or MAF < 0.01 |
+| matching       | Preferred pseudo sibling matching method, choose among 3sib, 1sib, and 2parent |
 
 ### Step2: Perform Genome-wide vQTL analysis
 ```bash
@@ -48,7 +60,19 @@ $ Rscript QUAIL_vQTL.R \
   --start 1 \
   --end 1000
 ```
-#### Explanation of Input for Step2
+where the inputs are
+
+| Flag | Description |
+|-----|------------------------------------------------------------------------|
+| tissue      | One of the above brain tissues |
+| chr         | The chromosomal location of the gene |
+| gene        | The name of the Gene |                                                    
+| fam     | The path to the fam file following the [PLINK format](https://www.cog-genomics.org/plink/1.9/formats#fam)<br>The sample IDs in the fam file should also be consistent with the sample IDs in the vcf file |
+| pred        | The path to the prediciton matrix |
+| vcf         | The path to the phased and QCed vcf file |
+| out       | The path to the output file |
+| qc       | Removing the SNPs with imputation quality < 0.8 or MAF < 0.01 |
+| matching       | Preferred pseudo sibling matching method, choose among 3sib, 1sib, and 2parent |
 
 #### Explanation of Output
 
