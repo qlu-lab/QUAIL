@@ -25,7 +25,7 @@ The software is developed using R and tested in Linux environments. The statisti
 ## Input Data Format
 ### Phenotype file
 
-The input phenotype file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the phenotype. Here is an example of the phenotype file:
+The input phenotype file need to be a n x 3 table, where n is the sample size. The columns in order are the FID, IID and the phenotype. Here is an example of the phenotype file `pheno.txt`:
 ```
 FID	IID	bmi
 1	1	31.0920070855422
@@ -40,7 +40,7 @@ FID	IID	bmi
 
 ### Covariate file
 
-The input Covariate file need to be a n x (m+2) table, where m is the number of covariates to included. The columns in oredr are the FID, IID and the covariates. Here is an example of the Covariate file:
+The input Covariate file need to be a n x (m+2) table, where m is the number of covariates to included. The columns in oredr are the FID, IID and the covariates. Here is an example of the covariate file `covar.txt`:
 
 ```
 FID	IID	sex	age	pc1
