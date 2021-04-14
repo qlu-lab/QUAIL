@@ -98,7 +98,6 @@ mclapply2 <- function(X, FUN, ...,
 # --- 2. Obtain the quantile integrated rank score
 
 # Step1: fit the null model for k quantiles
- ### number of quantiles to fit the model
 Get_a_i_tau <- function(i){
     tau_curr <- i/(num_levels + 1)
     # Fit quantile regression between phenotype and covarites at quantile i/k
@@ -116,6 +115,7 @@ Fit_a_i_tau <- function(start = 1, end = num_levels){
 }
 
 cat("Fitting the quantile regression to obtain quantile rank score:\n")
+
 # To suppress some Warnings that are harmless: https://github.com/HenrikBengtsson/future/issues/218
 df_all_q <- suppressWarnings(Fit_a_i_tau(start=1, end =num_levels))
 
