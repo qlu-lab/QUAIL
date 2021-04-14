@@ -6,7 +6,6 @@ suppressMessages(require(parallel))
 suppressMessages(library(optparse))
 suppressMessages(library(BEDMatrix))
 
-
 options(stringsAsFactors = F)
 option_list = list(
   make_option("--pheno", action = "store", default = NA, type = "character", help = "The path of the phenotype file"),
@@ -106,9 +105,10 @@ mclapply2 <- function(X, FUN, ...,
 }
 
 # --- 2. Obtain the quantile integrated rank score
+
 cat("Fitting the quantile regression to obtain quantile rank score:\n")
+
 # Step1: fit the null model for k quantiles
- ### number of quantiles to fit the model
 Get_a_i_tau_vpgs <- function(i){
     tau_curr <- i/(num_levels + 1)
     # Fit quantile regression between phenotype and covarites at quantile i/k
@@ -141,6 +141,7 @@ for (i in 1:num_levels){
 int_rank_score <- int_rank_score/((num_levels)/2)
 
 # --- 3. Use QUAIL to evaluate the vpgs performance
+
 # Obtain the vpgs_star
 cat("Begin evaluating vPGS performance:\n")
 m_vpgs_covar <- lm(vpgs ~ ., data = covar_no_vpgs)
@@ -152,6 +153,7 @@ coeff_vpgs <- summary(lm(Y_QI ~ vpgs_star))$coefficients
 df_out <- data.frame(BETA = coeff_vpgs[2, 1], SE = coeff_vpgs[2, 2], P =coeff_vpgs[2, 4], N = length(vpgs_star))
 cat("The evaluation result is .\n")
 print(df_out)
+
 # Write out the results
 cat("Write out the evaluation results.\n")
 fwrite(df_out, output, col.names = T, row.names = F, quote = F, sep = "\t", na = "NA")
