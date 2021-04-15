@@ -184,4 +184,9 @@ The final result has the following fields:
 
 All rights reserved for [Lu-Laboratory](http://qlu-lab.org/)
 
-## Credits
+## Citation
+
+If you use QUAIL, please cite
+
+Miao, J. et al. A quantile integral linear model to quantify genetic effects on phenotypic variability. bioRxiv, 2021.04.14.439847 (2021).
+
