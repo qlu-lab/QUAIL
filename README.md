@@ -180,9 +180,6 @@ The final result has the following fields:
 | P | The P-value for testing variance effects for vPGS |
 | N | Sample size |
 
-## License
-
-All rights reserved for [Lu-Laboratory](http://qlu-lab.org/)
 
 ## Citation
 
@@ -190,3 +187,6 @@ If you use QUAIL, please cite
 
 Miao, J., Lin, Y., Wu, Y., Zheng, B., Schmitz, L. L., Fletcher, J. M., & Lu, Q. (2021). [A quantile integral linear model to quantify genetic effects on phenotypic variability.](https://www.biorxiv.org/content/10.1101/2021.04.14.439847v1) bioRxiv, 2021.2004.2014.439847
 
+## License
+
+All rights reserved for [Lu-Laboratory](http://qlu-lab.org/)
