@@ -108,24 +108,30 @@ QUAIL <- function(i){
     bp <- geno_bim$V4[i]
     a1 <- geno_bim$V5[i]
     a2 <- geno_bim$V6[i]
-    maf <- sqrt(sum(SNP == 2, na.rm=T)/sum(!is.na(SNP)))
 
-    # Impute the NA SNP with 2*maf
-    SNP[is.na(SNP)] <- rep(2*maf, sum(is.na(SNP)))
+    ## Keep the non-NA in SNP
+    index_non_NA <- which(!is.na(SNP))
+    SNP <- SNP[index_non_NA]
+    covar_lm_non_NA <- covar_lm[index_non_NA, ]
+
+    # Calculate MAF
+    maf <- sqrt(sum(SNP == 2, na.rm=T)/sum(!is.na(SNP)))
 
     # Standardized the SNP
     SNP <- scale(SNP)
 
     # Obtain the G_star
-    m_SNP_covar <- lm(SNP ~ ., data = covar_lm)
+    m_SNP_covar <- lm(SNP ~ ., data = covar_lm_non_NA)
     G_star <- m_SNP_covar$residual
 
     # Run regression between Y_QI and G_star
     Y_QI <- sqrt(length(SNP))*pheno_lm[, 3]
+    Y_QI <- Y_QI[index_non_NA]
     coeff <- summary(lm(Y_QI ~ G_star))$coefficients
     QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff[2, c(1, 2, 4)], length(Y_QI))
     return(QUAIL_results)
 }
+
 
 # Parallel of QUAIL
 Fit_QUAIL <- function(start = snp_start, end = snp_end){
