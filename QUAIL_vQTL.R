@@ -52,9 +52,10 @@ covar <- as.data.frame(fread(covariate, data.table = F, stringsAsFactors = F))
 # align the  phenotype, covaraite, genotype files
 IID <- gsub(pattern = paste0(".*_(.*)"), rownames(geno_bed), replacement = "\\1")
 IID_overlap <- intersect(pheno$IID, IID)
-index_pheno <- match(pheno$IID, IID_overlap)
-index_covar <- match(covar$IID, IID_overlap)
-index_geno <- match(IID, IID_overlap)
+IID_overlap <- intersect(covar$IID, IID_overlap)
+index_pheno <- match(IID_overlap, pheno$IID)
+index_covar <- match(IID_overlap, covar$IID)
+index_geno <- match(IID_overlap, IID)
 pheno_lm <- pheno[index_pheno, ]
 covar_lm <- covar[index_covar, 3:ncol(covar)]
 
