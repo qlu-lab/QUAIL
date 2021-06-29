@@ -57,7 +57,7 @@ index_pheno <- match(IID_overlap, pheno$IID)
 index_covar <- match(IID_overlap, covar$IID)
 index_geno <- match(IID_overlap, IID)
 pheno_lm <- pheno[index_pheno, ]
-covar_lm <- covar[index_covar, 3:ncol(covar)]
+covar_lm <- as.data.frame(covar[index_covar, 3:ncol(covar)])
 
 # Progress bar of the mclapply; Source: https://stackoverflow.com/questions/10984556/is-there-way-to-track-progress-on-a-mclapply/26892969#26892969
 mclapply2 <- function(X, FUN, ..., 
@@ -113,7 +113,7 @@ QUAIL <- function(i){
     ## Keep the non-NA in SNP
     index_non_NA <- which(!is.na(SNP))
     SNP <- SNP[index_non_NA]
-    covar_lm_non_NA <- covar_lm[index_non_NA, ]
+    covar_lm_non_NA <- as.data.frame(covar_lm[index_non_NA, ])
 
     # Calculate MAF
     maf <- sqrt(sum(SNP == 2, na.rm=T)/sum(!is.na(SNP)))
