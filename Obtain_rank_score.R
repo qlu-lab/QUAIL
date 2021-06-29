@@ -51,7 +51,7 @@ pheno <- pheno[match(id_intersect, pheno$IID), ]
 covar <- covar[match(id_intersect, covar$IID), ]
 
 pheno_qr <- pheno[, 3]
-covar_qr <- covar[, 3:ncol(covar)]
+covar_qr <- as.data.frame(covar[, 3:ncol(covar)])
 covar_qr$d_rv <- rnorm(nrow(covar_qr))
 
 # Progress bar of the mclapply; Source: https://stackoverflow.com/questions/10984556/is-there-way-to-track-progress-on-a-mclapply/26892969#26892969
