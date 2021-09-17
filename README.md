@@ -156,6 +156,8 @@ The final result has the following fields:
 | P | The P-value for testing variance effects |
 | N | Sample size |
 
+Note that the BETA in the output of QUAIL is the standardized effect size. You can calculate the allele effect size by BETA_allele = BETA/sqrt(2*FREQ*(1-FREQ)), where BETA and FREQ comes from the output of QUAIL.
+
 ## Evaluate the predictive performance of vPGS
 #### Example:
 The following script evaluate the performance of vPGS from the `test.all.score` in predicting the variability of phenotype from `pheno.txt` using `500` quantile levels. The analysis adjusted the covaraites in `covar.txt` and `5` cores are used for parallel computing. The performance is written out to `output_vpgs.txt`.
