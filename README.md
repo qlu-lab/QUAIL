@@ -182,7 +182,8 @@ The final result has the following fields:
 | P | The P-value for testing variance effects for vPGS |
 | N | Sample size |
 
-## Example
+## Test data
+The test data is randomly generated. Here is an example to use the test data:
 ```bash
 cd ./QUAIL
 Rscript Obtain_Rank_Score.R \
