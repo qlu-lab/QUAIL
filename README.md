@@ -89,7 +89,7 @@ There are two steps to conduct the Genome-wide vQTL analysis:
 #### Example:
 The following script transform the phenotype in `pheno.txt` into the quantile integrated rank score using `2000` quantile levels. It adjusted the covaraites in `covar.txt` and `5` cores are used for parallel computing. The output phenotypic rank score file will be written to `pheno_rank_score.txt`.
 ```bash
-$ Rscript Obtain_Rank_Score.R \
+Rscript Obtain_Rank_Score.R \
   --pheno pheno.txt \
   --covar covar.txt \
   --output pheno_rank_score.txt \
@@ -111,7 +111,7 @@ where the inputs are
 #### Example:
 The following script perform genome-wide vQTL analysis from the `1`-`1000` SNPs in plink genotype file `geno` using output of quantile integrated rank score in step1 `pheno_rank_score.txt`. This analysis adjusted the covaraites in `covar.txt` and `5` cores are used for parallel computing. 
 ```bash
-$ Rscript QUAIL_vQTL.R \
+Rscript QUAIL_vQTL.R \
   --pheno_rs pheno_rank_score.txt \
   --geno geno \
   --covar covar.txt \
@@ -162,7 +162,7 @@ Note that the BETA in the output of QUAIL is the standardized effect size. You c
 #### Example:
 The following script evaluate the performance of vPGS from the `test.all.score` in predicting the variability of phenotype from `pheno.txt` using `500` quantile levels. The analysis adjusted the covaraites in `covar.txt` and `5` cores are used for parallel computing. The performance is written out to `output_vpgs.txt`.
 ```bash
-$ Rscript QUAIL_vPGS.R \
+Rscript QUAIL_vPGS.R \
   --pheno pheno.txt \
   --vpgs  vpgs.txt \
   --covar covar.txt \
@@ -185,9 +185,9 @@ The final result has the following fields:
 ## Example
 ```bash
 cd ./QUAIL
-$ Rscript Obtain_Rank_Score.R \
-  --pheno ./test_data/pheno.txt \
-  --covar ./test_data/covar.txt \
+Rscript Obtain_Rank_Score.R \
+  --pheno ./test_data/pheno_test.txt \
+  --covar ./test_data/covar_test.txt \
   --output pheno_rank_score.txt \
   --num_levels 2000 \
   --num_cores 5
