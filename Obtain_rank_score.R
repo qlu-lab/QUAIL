@@ -39,7 +39,6 @@ num_cores <- opt$num_cores
 cat("Preparing the data:\n")
 pheno <- as.data.frame(fread(phenotype,stringsAsFactors = F))
 pheno <- subset(pheno,!duplicated(pheno$IID))
-pheno[pheno[,3]==-9, 3] <- NA  # Plink format
 
 # read the covariates files
 covar <- as.data.frame(fread(covariate,data.table = F,stringsAsFactors = F))
