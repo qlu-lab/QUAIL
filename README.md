@@ -182,6 +182,17 @@ The final result has the following fields:
 | P | The P-value for testing variance effects for vPGS |
 | N | Sample size |
 
+## Example
+```bash
+cd ./QUAIL
+$ Rscript Obtain_Rank_Score.R \
+  --pheno ./test_data/pheno.txt \
+  --covar ./test_data/covar.txt \
+  --output pheno_rank_score.txt \
+  --num_levels 2000 \
+  --num_cores 5
+```
+
 
 ## Citation
 
