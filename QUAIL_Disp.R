@@ -169,9 +169,9 @@ Fit_QUAIL <- function(start = snp_start, end = snp_end){
     if (analysis == "var"){
         colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_var','SE_var','P_var', 'N')
     }else if (analysis == "disp"){
-        colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_mean','SE_mean','P_mean', 'BETA_var_tmp','BETA_var_tmp','BETA_var_tmp', 'N')
+        colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_mean','SE_mean','P_mean', 'BETA_var_tmp','SE_var_tmp','P_var_tmp', 'N')
     }else if (analysis == "both"){
-        colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_var','SE_var','P_var', 'BETA_mean','SE_mean','P_mean', 'BETA_var_tmp','BETA_var_tmp','BETA_var_tmp', 'N')
+        colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_var','SE_var','P_var', 'BETA_mean','SE_mean','P_mean', 'BETA_var_tmp','SE_var_tmp','P_var_tmp', 'N')
     }
     return(df_out)
 }
