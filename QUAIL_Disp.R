@@ -136,27 +136,24 @@ QUAIL_Disp <- function(i){
     # Obtain the G_star
     m_SNP_covar <- lm(SNP ~ ., data = covar_lm_non_NA)
     G_star <- m_SNP_covar$residual
-
+  
+    Y_QI <- sqrt(length(SNP))*pheno_rs_lm[, 3]
+    Y_QI <- Y_QI[index_non_NA]
+  
     # Run regression between Y_QI and G_star
     if (analysis == "var"){
-        Y_QI <- sqrt(length(SNP))*pheno_rs_lm[, 3]
-        Y_QI <- Y_QI[index_non_NA]
         coeff_var <- summary(lm(Y_QI ~ G_star))$coefficients
         QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff_var[2, c(1, 2, 4)], length(Y_QI))
     }else if (analysis == "disp"){
         pheno_residual_non_NA <- pheno_residual[index_non_NA]
-        Y_QI <- sqrt(length(SNP))*pheno_rs_lm[, 3]
-        Y_QI <- Y_QI[index_non_NA]
-        coeff_add <- summary(lm(Y_QI ~ G_star))$coefficients
-        coeff_var_tmp <- summary(lm(pheno_residual_non_NA ~ G_star))$coefficients
+        coeff_add <- summary(lm(pheno_residual_non_NA ~ G_star))$coefficients
+        coeff_var_tmp <- summary(lm(Y_QI ~ G_star + pheno_residual_non_NA))$coefficients
         QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff_add[2, c(1, 2, 4)], coeff_var_tmp[2, c(1, 2, 4)], length(Y_QI))
     }else if (analysis == "both"){
         pheno_residual_non_NA <- pheno_residual[index_non_NA]
-        Y_QI <- sqrt(length(SNP))*pheno_rs_lm[, 3]
-        Y_QI <- Y_QI[index_non_NA]
-        coeff_add <- summary(lm(Y_QI ~ G_star + pheno_residual_non_NA))$coefficients
         coeff_var <- summary(lm(Y_QI ~ G_star))$coefficients
-        coeff_var_tmp <- summary(lm(pheno_residual_non_NA ~ G_star))$coefficients
+        coeff_var_tmp <- summary(lm(Y_QI ~ G_star + pheno_residual_non_NA))$coefficients
+        coeff_add <- summary(lm(pheno_residual_non_NA ~ G_star))$coefficients
         QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff_var[2, c(1, 2, 4)], coeff_add[2, c(1, 2, 4)], coeff_var_tmp[2, c(1, 2, 4)], length(Y_QI))
         
     }
