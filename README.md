@@ -10,7 +10,8 @@ QUAIL (**qua**ntile **i**ntegral **l**inear model) is a quantile regression-base
 ![QUAIL workflow](https://github.com/qlu-lab/QUAIL/blob/main/Fig/QUAIL_Workflow.png)
 
 ## Updates
-- Jan 13, 2022: Add the test data part
+- Feb 25, 2022: Add the dispersion effects.
+- Jan 13, 2022: Add the test data part.
 - Apr 13, 2021: Initial release. Release the codes for Genome-wide vQTL analysis and evaluating the vPGS performance.
 
 ## Prerequisites
