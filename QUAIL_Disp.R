@@ -146,15 +146,15 @@ QUAIL_Disp <- function(i){
         QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff_var[2, c(1, 2, 4)], length(Y_QI))
     }else if (analysis == "disp"){
         pheno_residual_non_NA <- pheno_residual[index_non_NA]
-        coeff_add <- summary(lm(pheno_residual_non_NA ~ G_star))$coefficients
+        coeff_mean <- summary(lm(pheno_residual_non_NA ~ G_star))$coefficients
         coeff_var_tmp <- summary(lm(Y_QI ~ G_star + pheno_residual_non_NA))$coefficients
-        QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff_add[2, c(1, 2, 4)], coeff_var_tmp[2, c(1, 2, 4)], length(Y_QI))
+        QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff_mean[2, c(1, 2, 4)], coeff_var_tmp[2, c(1, 2, 4)], length(Y_QI))
     }else if (analysis == "both"){
         pheno_residual_non_NA <- pheno_residual[index_non_NA]
         coeff_var <- summary(lm(Y_QI ~ G_star))$coefficients
         coeff_var_tmp <- summary(lm(Y_QI ~ G_star + pheno_residual_non_NA))$coefficients
-        coeff_add <- summary(lm(pheno_residual_non_NA ~ G_star))$coefficients
-        QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff_var[2, c(1, 2, 4)], coeff_add[2, c(1, 2, 4)], coeff_var_tmp[2, c(1, 2, 4)], length(Y_QI))
+        coeff_mean <- summary(lm(pheno_residual_non_NA ~ G_star))$coefficients
+        QUAIL_results <- c(chr, snp_name, bp, a1, a2, maf, coeff_var[2, c(1, 2, 4)], coeff_mean[2, c(1, 2, 4)], coeff_var_tmp[2, c(1, 2, 4)], length(Y_QI))
         
     }
 
@@ -169,9 +169,9 @@ Fit_QUAIL <- function(start = snp_start, end = snp_end){
     if (analysis == "var"){
         colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_var','SE_var','P_var', 'N')
     }else if (analysis == "disp"){
-        colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_add','SE_add','P_add', 'BETA_var_tmp','BETA_var_tmp','BETA_var_tmp', 'N')
+        colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_mean','SE_mean','P_mean', 'BETA_var_tmp','BETA_var_tmp','BETA_var_tmp', 'N')
     }else if (analysis == "both"){
-        colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_var','SE_var','P_var', 'BETA_add','SE_add','P_add', 'BETA_var_tmp','BETA_var_tmp','BETA_var_tmp', 'N')
+        colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_var','SE_var','P_var', 'BETA_mean','SE_mean','P_mean', 'BETA_var_tmp','BETA_var_tmp','BETA_var_tmp', 'N')
     }
     return(df_out)
 }
