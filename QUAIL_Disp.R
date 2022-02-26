@@ -39,15 +39,6 @@ num_cores <- opt$num_cores
 snp_start <- opt$start
 snp_end <- opt$end
 
-# pheno_rs_path <- "/z/Comp/lu_group/Members/jmiao24/Collaboration/Lauren/Lauren_LHS/2_vGWAS/1_CPD/data/CPD_rank_score.txt"
-# pheno_path <- "/z/Comp/lu_group/Members/jmiao24/Collaboration/Lauren/Lauren_LHS/2_vGWAS/1_CPD/data/CPD_pheno.txt"
-# genotype <- "/z/Comp/lu_group/Members/yuchang/UKBiobank/imputed_results/genotype/chr1.EUR.idupdated"
-# covariate <- "/z/Comp/lu_group/Members/jmiao24/Collaboration/Lauren/Lauren_LHS/2_vGWAS/1_CPD/data/CPD_pheno.txt"
-# output <- "/z/Comp/lu_group/Members/jmiao24/Collaboration/Lauren/Lauren_LHS/11_QUAIL_Disp/codes/test/chr1/chunk1.txt"
-# num_cores <- 5
-# snp_start <- 1
-# snp_end <- 10
-
 geno_bed <- suppressMessages(BEDMatrix((paste0(genotype, ".bed"))))
 geno_bim <- fread(paste0(genotype, ".bim"))
 
