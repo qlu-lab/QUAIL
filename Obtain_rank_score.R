@@ -15,6 +15,17 @@ option_list = list(
 
 opt = parse_args(OptionParser(option_list=option_list))
 
+cat("********************************************************************* \n")
+cat("* Quantile integral linear model (QUAIL) \n")
+cat("* Version 1.0.0 \n")
+cat("* Genome-wide vQTL analysis \n")
+cat("* Step1: Obtaining quantile integrated rank score \n")
+cat("* (C) Jiacheng Miao \n")
+cat("* University of Wisconsin–Madison \n")
+cat("* https://github.com/qlu-lab/QUAIL \n")
+cat("* GNU General Public License v3 \n")
+cat("********************************************************************* \n \n")
+
 # --- 0. I/O check
 if(length(opt) < 5){
   cat("ERROR: Missing essential inputs\n")
@@ -25,6 +36,15 @@ if(opt$num_levels %% 2 == 1) {
   cat("ERROR: The num_levels need to be a even number\n")
   q("no")
 }
+
+cat("Options in effect: \n")
+cat("Rscript Obtain_Rank_Score.R \\ \n")
+cat(paste0("--pheno ", opt$pheno, " \\ \n"))
+cat(paste0("--covar ", opt$covar, " \\ \n"))
+cat(paste0("--output ", opt$output, " \\ \n"))
+cat(paste0("--num_levels", opt$num_levels, " \\ \n"))
+cat(paste0("--num_cores ", opt$num_cores, " \\ \n"))
+
 
 # Input parameters
 phenotype <- opt$pheno

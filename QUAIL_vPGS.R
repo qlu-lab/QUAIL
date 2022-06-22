@@ -24,6 +24,16 @@ if (is.na(opt$pheno) | is.na(opt$vpgs) |  is.na(opt$covar) | is.na(opt$output) |
     q("no")
 }
 
+cat("********************************************************************* \n")
+cat("* Quantile integral linear model (QUAIL) \n")
+cat("* Version 1.0.0 \n")
+cat("* Assessing vPGS predictive performance \n")
+cat("* (C) Jiacheng Miao \n")
+cat("* University of Wisconsin–Madison \n")
+cat("* https://github.com/qlu-lab/QUAIL \n")
+cat("* GNU General Public License v3 \n")
+cat("********************************************************************* \n \n")
+
 # Input parameters
 phenotype <- opt$pheno
 vpgs_path <- opt$vpgs

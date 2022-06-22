@@ -28,6 +28,17 @@ if (is.na(opt$pheno_rs) | is.na(opt$pheno) | is.na(opt$geno) |  is.na(opt$covar)
     q("no")
 }
 
+cat("********************************************************************* \n")
+cat("* Quantile integral linear model (QUAIL) \n")
+cat("* Version 1.0.0 \n")
+cat("* Estimating QUAIL dispersion effects \n")
+cat("* (C) Jiacheng Miao \n")
+cat("* University of Wisconsin–Madison \n")
+cat("* https://github.com/qlu-lab/QUAIL \n")
+cat("* GNU General Public License v3 \n")
+cat("********************************************************************* \n \n")
+
+
 # Input parameters
 analysis <- opt$analysis
 pheno_rs_path <- opt$pheno_rs

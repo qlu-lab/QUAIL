@@ -19,10 +19,35 @@ option_list = list(
 
 opt = parse_args(OptionParser(option_list=option_list))
 
+cat("********************************************************************* \n")
+cat("* Quantile integral linear model (QUAIL) \n")
+cat("* Version 1.0.0 \n")
+cat("* Genome-wide vQTL analysis \n")
+cat("* Step2: Performing genome-wide vQTL analysis \n")
+cat("* (C) Jiacheng Miao \n")
+cat("* University of Wisconsin–Madison \n")
+cat("* https://github.com/qlu-lab/QUAIL \n")
+cat("* GNU General Public License v3 \n")
+cat("********************************************************************* \n \n")
+
 # --- 0. I/O check
 if (is.na(opt$pheno_rs) | is.na(opt$geno) |  is.na(opt$covar) | is.na(opt$output) | is.na(opt$num_cores)) {
     cat("ERROR: Missing essential inputs.\n")
     q("no")
+}
+
+cat("Options in effect: \n")
+cat("Rscript LOGODetect.R \\ \n")
+cat(paste0("--pheno_rs ", opt$pheno_rs, " \\ \n"))
+cat(paste0("--geno ", opt$geno, " \\ \n"))
+cat(paste0("--covar ", opt$covar, " \\ \n"))
+cat(paste0("--output", opt$output, " \\ \n"))
+cat(paste0("--num_cores ", opt$num_cores, " \\ \n"))
+if (!is.na(opt$target_pop)) {
+  cat(paste0("--start ", opt$start, " \\ \n"))
+}
+if (!is.na(opt$n_topregion)) {
+  cat(paste0("--end ", opt$end, " \\ \n"))
 }
 
 # Input parameters
