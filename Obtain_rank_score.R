@@ -45,7 +45,7 @@ cat(paste0("--pheno ", opt$pheno, " \\ \n"))
 cat(paste0("--covar ", opt$covar, " \\ \n"))
 cat(paste0("--output ", opt$output, " \\ \n"))
 cat(paste0("--method ", opt$method, " \\ \n"))
-cat(paste0("--num_levels", opt$num_levels, " \\ \n"))
+cat(paste0("--num_levels ", opt$num_levels, " \\ \n"))
 cat(paste0("--num_cores ", opt$num_cores, " \\ \n"))
 
 
