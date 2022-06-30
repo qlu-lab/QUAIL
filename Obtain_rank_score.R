@@ -154,9 +154,9 @@ if (method == "equal") {
     int_rank_score <- int_rank_score + weight * df_all_q[[i]]
   }
 } else if (method == "ivw") {
-  a_i_tau_diff_matrix <- matrix(rep(0, num_levels / 2 * nrow(covar_qr)), nrow = nrow(covar_qr), ncol = num_levels / 2)
+  a_i_tau_diff_matrix <- matrix(rep(0, num_levels / 2 * length(df_all_q[[1]])), nrow = length(df_all_q[[1]]), ncol = num_levels / 2)
   for (i in 1:(num_levels / 2)) {
-    a_i_tau_diff_matrix[, i] <- a_i_tau_vec[[i + num_levels / 2]] - a_i_tau_vec[[i]]
+    a_i_tau_diff_matrix[, i] <- df_all_q[[i + num_levels / 2]] - df_all_q[[i]]
   }
 
   # Create a data frame
