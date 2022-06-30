@@ -63,6 +63,7 @@ num_cores <- opt$num_cores
 cat("Preparing the data:\n")
 pheno <- as.data.frame(fread(phenotype, stringsAsFactors = F))
 pheno <- pheno[!duplicated(pheno$IID), ]
+pheno <- pheno[!is.na(pheno[,3])]
 
 # read the covariates files
 covar <- as.data.frame(fread(covariate, data.table = F, stringsAsFactors = F))
