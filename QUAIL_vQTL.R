@@ -165,6 +165,9 @@ Fit_QUAIL <- function(start = snp_start, end = snp_end){
     df_out <- do.call(rbind, df_out)
     df_out <- as.data.frame(df_out)
     colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA','SE','P', 'N')
+    # convect standardized beta into allele beta; also SE
+    df_out$BETA <- df_out$BETA/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+    df_out$SE <- df_out$SE/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
     return(df_out)
 }
 
