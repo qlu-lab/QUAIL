@@ -43,12 +43,6 @@ cat(paste0("--geno ", opt$geno, " \\ \n"))
 cat(paste0("--covar ", opt$covar, " \\ \n"))
 cat(paste0("--output", opt$output, " \\ \n"))
 cat(paste0("--num_cores ", opt$num_cores, " \\ \n"))
-if (!is.na(opt$target_pop)) {
-  cat(paste0("--start ", opt$start, " \\ \n"))
-}
-if (!is.na(opt$n_topregion)) {
-  cat(paste0("--end ", opt$end, " \\ \n"))
-}
 
 # Input parameters
 pheno_rank_score <- opt$pheno_rs
@@ -165,6 +159,13 @@ Fit_QUAIL <- function(start = snp_start, end = snp_end){
     df_out <- do.call(rbind, df_out)
     df_out <- as.data.frame(df_out)
     colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA','SE','P', 'N')
+    # string to num
+    df_out$BP <- as.numeric(df_out$BP)
+    df_out$FREQ <- as.numeric(df_out$FREQ)
+    df_out$BETA <- as.numeric(df_out$BETA)
+    df_out$SE <- as.numeric(df_out$SE)
+    df_out$P <- as.numeric(df_out$P)
+    df_out$N <- as.numeric(df_out$N)
     # convect standardized beta into allele beta; also SE
     df_out$BETA <- df_out$BETA/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
     df_out$SE <- df_out$SE/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
