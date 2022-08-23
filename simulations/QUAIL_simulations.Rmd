@@ -1,0 +1,111 @@
+---
+title: "QUAIL_simulations"
+output:
+  pdf_document: default
+  html_document: default
+author: Jiacheng Miao
+date: August 22 2022
+---
+
+# Introduction
+
+This file provides an example of QUAIL simulations.
+
+In the same folder, we provide two R files containing functions that implements the QUAIL and other methods used in the simulations.
+
+-   `QUAIL_FUN_Sim.R` : conduct the simulations where there is no covariates
+
+    -   Specifically, you can use `QUAIL(x, y)` to perform QUAIL, where x is a $N$-dimensional vector of **a single SNP** and y is a $N$-dimensional vector of a phenotype.
+
+-   `QUAIL_Covar_FUN_Sim.R` : conduct the simulations where there is one covariates
+
+    -   Specifically, you can use `QUAIL(x, y, covar)` to perform QUAIL, where x is a $N$-dimensional vector of **a single SNP** , y is a $N$-dimensional vector of a phenotype, covar is a $N$-dimensional vector of a covaraites.
+
+An easy way to implement the QUAIL simulations is to download these two files and source it in R. The R packages required for the simulations are `car` , `quantreg` , `lmtest` , and `quantreg` .
+
+# Simulations when there is no covariates
+
+We first have a function simulate the SNP and phenotype; You can modify any parameters in `Sim` function as you want. The detailed simulation setting can be found in QUAIL manuscripts. To have a sense about how the data looks like, we run the `Sim` function and check the head of the genotype and phenotype
+
+```{r}
+source("QUAIL_Sim_Fun.R")
+sim <- Sim(seed = 1, g_type = "mean")
+geno <- sim$geno
+y <- sim$y
+print(head(geno))
+print(head(y))
+```
+
+Next we compare the type-I error for different methods by replicating the simulations 500 times. We first loaded the function in `QUAIL_FUN_Sim.R` . The input data for the vQTL method is a vector.
+
+```{r}
+source("QUAIL_Sim_Fun.R")
+P_QUAIL <- c() # QUAIL P-value vector
+P_DRM <- c() # DRM  P-value vector
+P_Lev <- c() # Levene's test  P-value vector
+P_HLMM <- c() # HLMM using raw outcome  P-value vector
+P_HLMM_INT <- c() # HLMM using inverse normal transformed outcome  P-value vector
+for (rep in 1:500){
+  # Simulate the genotype and phenotype
+  sim <- Sim(rep, g_type = "mean") # "g_type <- mean" to access the type-I error for different vQTL method
+  geno <- sim$geno
+  y <- sim$y
+  # Apply the vQTL methods
+  P_QUAIL <- c(QUAIL(geno, y), P_QUAIL) # QUAIL
+  P_DRM <- c(DRM(geno, y), P_DRM) # DRM
+  P_Lev <- c(Lev(geno, y), P_Lev) # Levene's test
+  P_HLMM <- c(HLMM(geno, y), P_HLMM) # HLMM using raw outcome
+  P_HLMM_INT <- c(HLMM_INT(geno, y), P_HLMM_INT) # HLMM using inverse normal transformed outcome
+}
+# Assess the type-I error
+print(sum(P_QUAIL < 0.05)/length(P_QUAIL))
+print(sum(P_DRM < 0.05)/length(P_DRM))
+print(sum(P_Lev < 0.05)/length(P_Lev))
+print(sum(P_HLMM < 0.05)/length(P_HLMM))
+print(sum(P_HLMM_INT < 0.05)/length(P_HLMM_INT))
+```
+
+# Simulations when there are covariates
+
+We first have a function simulate the SNP, phenotype, and covariates; You can modify any parameters in `Sim_Covar` function as you want. The detailed simulation setting can be found in QUAIL manuscripts. To have a sense about how the data looks like, we run the `Sim_Covar` function and check the head of the genotype, phenotype and covaraites
+
+```{r}
+source("QUAIL_Sim_Covar_Fun.R")
+sim <- Sim_Covar(seed = 1)
+geno <- sim$geno
+y <- sim$y
+covar <- sim$covar
+print(head(geno))
+print(head(y))
+print(head(covar))
+```
+
+Next we compare the type-I error for different methods in the presence of covariates by replicating the simulations 500 times. We first loaded the function in `QUAIL_FUN_Covar_Sim.R` .The input data for the vQTL method is a vector.
+
+```{r}
+source("QUAIL_Sim_Covar_Fun.R")
+P_QUAIL <- c() # QUAIL P-value vector
+P_DRM <- c() # DRM  P-value vector
+P_Lev <- c() # Levene's test  P-value vector
+P_HLMM <- c() # HLMM using raw outcome  P-value vector
+P_HLMM_INT <- c() # HLMM using inverse normal transformed outcome  P-value vector
+for (rep in 1:500){
+  # Simulate the genotype and phenotype
+  sim <- Sim_Covar(rep)
+  geno <- sim$geno
+  y <- sim$y
+  covar <- sim$covar
+  # Apply the vQTL methods
+  P_QUAIL <- c(QUAIL_Covar(geno, y, covar), P_QUAIL) # QUAIL
+  P_DRM <- c(DRM_Covar(geno, y, covar), P_DRM) # DRM
+  P_Lev <- c(Lev_Covar(geno, y, covar), P_Lev) # Levene's test
+  P_HLMM <- c(HLMM_Covar(geno, y, covar), P_HLMM) # HLMM using raw outcome
+  P_HLMM_INT <- c(HLMM_INT_Covar(geno, y, covar), P_HLMM_INT) # HLMM using inverse normal transformed outcome
+}
+# Assess the type-I error
+print(sum(P_QUAIL < 0.05)/length(P_QUAIL))
+print(sum(P_DRM < 0.05)/length(P_DRM))
+print(sum(P_Lev < 0.05)/length(P_Lev))
+print(sum(P_HLMM < 0.05)/length(P_HLMM))
+print(sum(P_HLMM_INT < 0.05)/length(P_HLMM_INT))
+```
