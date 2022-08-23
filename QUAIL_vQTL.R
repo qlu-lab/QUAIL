@@ -37,7 +37,7 @@ if (is.na(opt$pheno_rs) | is.na(opt$geno) |  is.na(opt$covar) | is.na(opt$output
 }
 
 cat("Options in effect: \n")
-cat("Rscript LOGODetect.R \\ \n")
+cat("Rscript QUAIL_vQTL.R \\ \n")
 cat(paste0("--pheno_rs ", opt$pheno_rs, " \\ \n"))
 cat(paste0("--geno ", opt$geno, " \\ \n"))
 cat(paste0("--covar ", opt$covar, " \\ \n"))
