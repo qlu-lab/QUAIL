@@ -179,10 +179,22 @@ Fit_QUAIL <- function(start = snp_start, end = snp_end){
     df_out <- as.data.frame(df_out)
     if (analysis == "var"){
         colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_var','SE_var','P_var', 'N')
+        df_out$BETA_var <- df_out$BETA_var/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$SE_var <- df_out$SE_var/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
     }else if (analysis == "disp"){
         colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_mean','SE_mean','P_mean', 'BETA_var_tmp','SE_var_tmp','P_var_tmp', 'N')
+        df_out$BETA_mean <- df_out$BETA_mean/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$SE_mean <- df_out$SE_mean/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$BETA_var_tmp <- df_out$BETA_var_tmp/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$SE_var_tmp <- df_out$SE_var_tmp/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
     }else if (analysis == "both"){
         colnames(df_out) <-  c('CHR', 'SNP', 'BP', 'A1', 'A2', 'FREQ', 'BETA_var','SE_var','P_var', 'BETA_mean','SE_mean','P_mean', 'BETA_var_tmp','SE_var_tmp','P_var_tmp', 'N')
+        df_out$BETA_mean <- df_out$BETA_mean/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$SE_mean <- df_out$SE_mean/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$BETA_var_tmp <- df_out$BETA_var_tmp/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$SE_var_tmp <- df_out$SE_var_tmp/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$BETA_var <- df_out$BETA_var/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
+        df_out$SE_var <- df_out$SE_var/(sqrt(2*df_out$FREQ*(1-df_out$FREQ)))
     }
     return(df_out)
 }
