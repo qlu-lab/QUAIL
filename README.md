@@ -202,7 +202,7 @@ Rscript Obtain_Rank_Score.R \
 
 If you use QUAIL, please cite
 
-Miao, J., Lin, Y., Wu, Y., Zheng, B., Schmitz, L. L., Fletcher, J. M., & Lu, Q. (2021). [A quantile integral linear model to quantify genetic effects on phenotypic variability.](https://www.biorxiv.org/content/10.1101/2021.04.14.439847v1) bioRxiv, 2021.2004.2014.439847
+Miao, J., Lin, Y., Wu, Y., Zheng, B., Schmitz, L. L., Fletcher, J. M., & Lu, Q. (2022). A quantile integral linear model to quantify genetic effects on phenotypic variability. Proceedings of the National Academy of Sciences, 119(39), e2212959119. https://doi.org/doi:10.1073/pnas.2212959119 
 
 ## License
 
