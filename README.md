@@ -159,7 +159,6 @@ The final result has the following fields:
 | P | The P-value for testing variance effects |
 | N | Sample size |
 
-Note that the BETA in the output of QUAIL is the standardized effect size. You can calculate the allele effect size by BETA_allele = BETA/sqrt(2 * FREQ * (1-FREQ)), where BETA and FREQ come from the output of QUAIL.
 
 ## Evaluate the predictive performance of vPGS
 #### Example:
