@@ -10,6 +10,7 @@ QUAIL (**qua**ntile **i**ntegral **l**inear model) is a quantile regression-base
 ![QUAIL workflow](https://github.com/qlu-lab/QUAIL/blob/main/Fig/QUAIL_Workflow.png)
 
 ## Updates
+- Mar 14, 2023: Speed up the step2 and move the tutorials into wiki.
 - Aug 22, 2022: Add the simulation codes.
 - Feb 25, 2022: Add the dispersion effects.
 - Jan 13, 2022: Add the test data part.
@@ -109,37 +110,36 @@ where the inputs are
 | num_levels     | Number of quantile levels to fit |
 | num_cores        | Number of cores for parallel computing |
 
-### Step2: Perform genome-wide vQTL analysis
+### Step2: Perform genome-wide vQTL analysis using plink2
 
 #### Example:
-The following script perform genome-wide vQTL analysis from the `1`-`1000` SNPs in plink genotype file `geno` using output of quantile integrated rank score in step1 `pheno_rank_score.txt`. This analysis adjusted the covaraites in `covar.txt` and `5` cores are used for parallel computing. 
+The following script perform genome-wide vQTL analysis for SNPs in plink genotype file `geno` using output of quantile integrated rank score in step1 `pheno_rank_score.txt`. This analysis adjusted the covaraites in `covar.txt`. You can find other options in plink2 [here](https://www.cog-genomics.org/plink/2.0/assoc).
 ```bash
-Rscript QUAIL_vQTL.R \
-  --pheno_rs pheno_rank_score.txt \
-  --geno geno \
-  --covar covar.txt \
-  --output output_1-100.txt \
-  --num_cores 5 \
-  --start 1 \
-  --end 1000
+### Step2: Perform genome-wide vQTL analysis using plink2
+chmod a+x ./plink/plink2
+chmod a+x ./format_sumstats.sh
+./plink/plink2 \
+  --bfile ./test_data/test \
+  --pheno ./test_data/pheno_test.txt \
+  --covar ./test_data/covar_test.txt \
+  --out ./test_data/QUAIL_vQTL \
+  --linear \
+  --no-psam-pheno
+
+# Format the vQTL summary statistics
+bash ./format_sumstats.sh ./test_data/QUAIL_vQTL
 ```
 where the inputs are
 
 | Flag | Description |
 |-----|------------------------------------------------------------------------|
-| pheno_rs      | The path to output phenotypic rank score file from step1|
-| geno         | The path of the genotype file following the [PLINK format](https://www.cog-genomics.org/plink/1.9). |
+| pheno      | The path to output phenotypic rank score file from step1|
+| bfile         | The path of the genotype file following the [PLINK format](https://www.cog-genomics.org/plink/1.9). |
 | covar        | The path to the covariate file |                                                    
-| output     | The path to the output summary statistics file |
-| num_cores        | Number of cores for parallel computing |
-| start          | (Optional) Index of SNP that starts computing |
-| end       | (Optional) Index of SNP that ends computing |
+| out     | The path to the output summary statistics file |
 
 Note that 
 * For both genotype vQTL analysis and vPGS analysis(described following), the `--num_levels` depends on the sample size in the analytic sample. We recommend using 500 levels when the sample size is around 10000 and 2000 levels when the sample size > 10000. However, you can check the robustness of your results by using more levels.
-
-* The script is designed to run on chromosome segments to facilitate parallel computation on the cluster. If `--start` or `--end` is not specified, the script will perform the analysis on all SNPs in the plink `test` file.
-
 
 
 #### Explanation of Output
