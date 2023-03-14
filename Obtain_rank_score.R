@@ -78,7 +78,7 @@ pheno_qr <- pheno[, 3]
 covar_qr <- as.data.frame(covar[, 3:ncol(covar)])
 covar_qr$d_rv <- rnorm(nrow(covar_qr))
 
-cat(paste0("After merging the phenotype and covariate files, ", nrow(covar_qr), " individuals remains\n")
+cat(paste0("After merging the phenotype and covariate files, ", nrow(covar_qr), " individuals remain\n")
 
 # Progress bar of the mclapply; Source: https://stackoverflow.com/questions/10984556/is-there-way-to-track-progress-on-a-mclapply/26892969#26892969
 mclapply2 <- function(X, FUN, ...,
