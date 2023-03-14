@@ -188,7 +188,7 @@ The final result has the following fields:
 The test data is randomly generated. Here is an example to use the test data:
 ```bash
 cd ./QUAIL
-Rscript Obtain_Rank_Score.R \
+Rscript Obtain_rank_ccore.R \
   --pheno ./test_data/pheno_test.txt \
   --covar ./test_data/covar_test.txt \
   --output pheno_rank_score.txt \
