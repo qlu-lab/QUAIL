@@ -12,8 +12,7 @@ option_list = list(
   make_option("--vpgs", action = "store", default = NA, type = "character", help = "The path of the vpgs file"),
   make_option("--covar", action = "store", default = NA, type = "character", help = "The path of the covariate file"),
   make_option("--output", action = "store", default = NA, type = "character", help = "The path of the output file"),
-  make_option("--num_levels", action = "store", default = NA, type = "integer", help = "Number of quantile levels to fit"),
-  make_option("--num_cores", action = "store", default = NA, type = "integer", help = "Numbers of cores for parellel computing")
+  make_option("--num_levels", action = "store", default = NA, type = "integer", help = "Number of quantile levels to fit")
 )
 
 opt = parse_args(OptionParser(option_list=option_list))
@@ -40,7 +39,6 @@ vpgs_path <- opt$vpgs
 covariate <- opt$covar
 output <- opt$output
 num_levels <- opt$num_levels
-num_cores <- opt$num_cores
 
 # --- 1. Read the input files
 
@@ -73,46 +71,6 @@ covar_vpgs$vpgs <- vpgs
 covar_no_vpgs <- covar[, 3:ncol(covar)]
 pheno_qr <- lm(pheno[, 3] ~ vpgs)$residuals
 
-# Progress bar of the mclapply; Source: https://stackoverflow.com/questions/10984556/is-there-way-to-track-progress-on-a-mclapply/26892969#26892969
-mclapply2 <- function(X, FUN, ..., 
-    mc.preschedule = TRUE, mc.set.seed = TRUE,
-    mc.silent = FALSE, mc.cores = getOption("mc.cores", 2L),
-    mc.cleanup = TRUE, mc.allow.recursive = TRUE,
-    mc.progress=TRUE, mc.style=3) {
-    if (!is.vector(X) || is.object(X)) X <- as.list(X)
-
-    if (mc.progress) {
-        f <- fifo(tempfile(), open="w+b", blocking=T)
-        p <- parallel:::mcfork()
-        pb <- txtProgressBar(0, length(X), style=mc.style)
-        setTxtProgressBar(pb, 0) 
-        progress <- 0
-        if (inherits(p, "masterProcess")) {
-            while (progress < length(X)) {
-                readBin(f, "double")
-                progress <- progress + 1
-                setTxtProgressBar(pb, progress) 
-            }
-            cat("\n")
-            parallel:::mcexit()
-        }
-    }
-    tryCatch({
-        result <- mclapply(X, function(...) {
-                res <- FUN(...)
-                if (mc.progress) writeBin(1, f)
-                res
-            }, 
-            mc.preschedule = mc.preschedule, mc.set.seed = mc.set.seed,
-            mc.silent = mc.silent, mc.cores = mc.cores,
-            mc.cleanup = mc.cleanup, mc.allow.recursive = mc.allow.recursive
-        )
-
-    }, finally = {
-        if (mc.progress) close(f)
-    })
-    result
-}
 
 # --- 2. Obtain the quantile integrated rank score
 
@@ -132,7 +90,7 @@ Get_a_i_tau_vpgs <- function(i){
 }
 
 Fit_a_i_tau_vpgs <- function(start = 1, end = num_levels){
-    df_one_q <- mclapply2(start:end, Get_a_i_tau_vpgs, mc.cores = num_cores)
+    df_one_q <- lapply(start:end, Get_a_i_tau_vpgs)
     return(df_one_q)
 }
 
