@@ -15,7 +15,8 @@ option_list = list(
   make_option("--output", action = "store", default = NA, type = "character", help = "The prefix of of the output file"),
   make_option("--plink_path", action = "store", default = NA, type = "character", help = "The path to the plink files"),
   make_option("--dispersion", action = "store_true", default = FALSE, help = "whether to perform the dispersion test"),
-  make_option("--pheno", action = "store", default = NA, type = "character", help = "The path to the phenotype file")
+  make_option("--pheno", action = "store", default = NA, type = "character", help = "The path to the phenotype file"),
+  make_option("--freq", action = "store", default = NA, type = "character", help = "The path of an external allele frequency file")
 )
 
 opt = parse_args(OptionParser(option_list=option_list))
@@ -38,15 +39,23 @@ if (is.na(opt$pheno_rs) | is.na(opt$geno) |  is.na(opt$covar) | is.na(opt$output
 }
 
 cat("Options in effect: \n")
-cat("Rscript QUAIL_vQTL.R \\ \n")
+cat("Rscript Step2_QUAIL_vQTL.R \\ \n")
 cat(paste0("--pheno ", opt$pheno_rs, " \\ \n"))
 cat(paste0("--pheno_rs ", opt$pheno_rs, " \\ \n"))
 cat(paste0("--geno ", opt$geno, " \\ \n"))
 cat(paste0("--covar ", opt$covar, " \\ \n"))
 cat(paste0("--output ", opt$output, " \\ \n"))
 cat(paste0("--plink_path ", opt$plink_path, " \\ \n"))
-cat(paste0("--dispersion ", opt$dispersion, " \\ \n"))
-cat(paste0("--pheno ", opt$pheno, " \\ \n"))
+if (!is.na(opt$dispersion)){
+  cat(paste0("--dispersion ", opt$dispersion, " \\ \n"))
+}
+if (!is.na(opt$pheno)){
+  cat(paste0("--pheno ", opt$pheno, " \\ \n"))
+}
+if (!is.na(opt$freq)){
+  cat(paste0("--freq ", opt$freq, " \\ \n"))
+}
+
 
 # Input parameters
 pheno_rank_score <- opt$pheno_rs
@@ -56,6 +65,7 @@ output <- opt$output
 plink_path <- opt$plink_path
 dispersion <- opt$dispersion
 pheno <- opt$pheno
+freq <- opt$freq
 
 rank_score <- fread(pheno_rank_score)
 rank_score_name <- colnames(rank_score)[3]
@@ -70,8 +80,13 @@ if (dispersion){
 }
 # Plinlk2 to run genome-wide vQTL analysis
 cat("\n### Use plink2 to run the Genome-wide vQTL analysis ###\n")
-job_vqtl <- paste0(plink_path, " --bfile ", genotype, " --pheno ", pheno_rank_score , " --covar ", covariate, " --out ", output, "_QUAIL_vQTL --linear --no-psam-pheno")
-system(job_vqtl)
+if (!is.na(freq)){
+  job_vqtl <- paste0(plink_path, " --bfile ", genotype, " --rm-dup 'exclude-all' 'list' ", " --read-freq ", freq,  " --pheno ", pheno_rank_score , " --covar ", covariate, " --out ", output, "_QUAIL_vQTL --linear --no-psam-pheno")
+  system(job_vqtl)
+}else{
+  job_vqtl <- paste0(plink_path, " --bfile ", genotype, " --rm-dup 'exclude-all' 'list' ", " --pheno ", pheno_rank_score , " --covar ", covariate, " --out ", output, "_QUAIL_vQTL --linear --no-psam-pheno")
+  system(job_vqtl)
+}
 
 # Format the  Genome-wide vQTL summary statistics
 cat("\n### Format the Genome-wide vQTL summary statistics ###\n")
@@ -80,16 +95,22 @@ df <- df[df$TEST == "ADD", ]
 df$A2 <- ifelse(df$A1 == df$REF, df$ALT, df$REF)
 colnames(df) <- c("CHR", "BP", "SNP", "REF", "ALT", "A1", "TEST", "N", "BETA", "SE", "Z", "P", "A2")
 col_out <- c("CHR", "BP", "SNP", "A1", "A2", "BETA", "SE", "Z", "P", "N")
-df <- as.data.frame(df)[, col_out]
-cat("--- Saving the vQTL results.\n")
+df <- as.data.frame(df)[!(is.na(df$P)), col_out]
+cat("--- Saving the QUAIL vQTL  results with ", nrow(df), " SNPs\n")
 fwrite(df, paste0(output, "_QUAIL_vQTL.txt"), sep = "\t", quote = F, row.names = F, col.names = T)
 cat("--- The QUAIL vQTL results are saved in ", paste0(output, "_QUAIL_vQTL.txt") ,"!\n")
 
 if (dispersion){
   cat("\n### Use plink2 to run the Genome-wide dispersion analysis ###\n")
   # Additive GWAS
-  job_add <- paste0(plink_path, " --bfile ", genotype, " --pheno ", pheno , " --covar ", covariate, " --out ", output, "_GWAS_add --linear --no-psam-pheno")
-  system(job_add)
+
+  if (!is.na(freq)){
+    job_add <- paste0(plink_path, " --bfile ", genotype, " --rm-dup 'exclude-all' 'list' ", " --read-freq ", freq, " --pheno ", pheno , " --covar ", covariate, " --out ", output, "_GWAS_add --linear --no-psam-pheno")
+    system(job_add)
+  }else{
+    job_add <- paste0(plink_path, " --bfile ", genotype, " --rm-dup 'exclude-all' 'list' ", " --pheno ", pheno , " --covar ", covariate, " --out ", output, "_GWAS_add --linear --no-psam-pheno")
+    system(job_add)
+  }
   # Read the additive GWAS
   df_add <- fread(paste0(output, "_GWAS_add.", pheno_name, ".glm.linear"))
   df_add <- df_add[df_add$TEST == "ADD", ]
@@ -99,8 +120,15 @@ if (dispersion){
   df_add <- as.data.frame(df_add)[, col_out]
 
   # vQTL GWAS with raw phenotype with covaraites
-  job_disp <- paste0(plink_path, " --bfile ", genotype, " --pheno ", pheno_rank_score , " --covar ", paste0(output, "_covar_tmp.txt"), " --out ", output, "_QUAIL_disp --linear --no-psam-pheno")
-  system(job_disp)
+
+  if (!is.na(freq)){
+    job_disp <- paste0(plink_path, " --bfile ", genotype, " --rm-dup 'exclude-all' 'list' ", " --read-freq ", freq,  " --pheno ", pheno_rank_score , " --covar ", paste0(output, "_covar_tmp.txt"), " --out ", output, "_QUAIL_disp --linear --no-psam-pheno")
+    system(job_disp)
+  }else{
+    job_disp <- paste0(plink_path, " --bfile ", genotype, " --rm-dup 'exclude-all' 'list' ",  " --pheno ", pheno_rank_score , " --covar ", paste0(output, "_covar_tmp.txt"), " --out ", output, "_QUAIL_disp --linear --no-psam-pheno")
+    system(job_disp)
+  }
+
   # Read the vQTL GWAS with raw phenotype with covaraites
   df_vqtl <- fread(paste0(output, "_QUAIL_disp.", rank_score_name, ".glm.linear"))
   df_vqtl <- df_vqtl[df_vqtl$TEST == "ADD", ]
@@ -132,13 +160,14 @@ if (dispersion){
   dispersion_t <- dispersion/dispersion_se
   dispersion_pval <- pchisq(dispersion_t^2,1,lower.tail=F)
   df_disp_tmp <- data.frame(BETA_disp = dispersion, SE_disp = dispersion_se, Z_disp = dispersion_t, P_disp = dispersion_pval, N = df_vqtl_MHC$N)
-
-  cat("--- Saving the dispersion results.\n")
+  cat("\n")
   df_disp <- df_add_MHC
   df_raw_vqtl <- df[match(df_disp$SNP, df$SNP), ]
   df_disp <- cbind(df_disp, as.data.frame(df_raw_vqtl)[, c("BETA", "SE", "Z", "P")])
   df_disp <- cbind(df_disp, df_disp_tmp)
+  df_disp <- df_disp[!(is.na(df_disp$P_disp)), ]
   colnames(df_disp) <- c("CHR", "BP", "SNP", "A1", "A2", "BETA_add", "SE_add", "Z_add", "P_add", "BETA_var", "SE_var", "Z_var", "P_var", "BETA_disp", "SE_disp", "Z_disp", "P_disp", "N")
+  cat("--- Saving the QUAIL dispersion results with ", nrow(df_disp), " SNPs\n")
   fwrite(df_disp, paste0(output, "_QUAIL_Disp.txt"), sep = "\t", quote = F, row.names = F, col.names = T)
   cat("--- The QUAIL dispersion results are saved in ", paste0(output, "_QUAIL_Disp.txt") ,"!\n")
 

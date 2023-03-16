@@ -6,21 +6,25 @@ Options in effect:
   --no-psam-pheno
   --out test_data/vQTL_scan_QUAIL_vQTL
   --pheno test_data/pheno_rank_score.txt
+  --read-freq test_data/test.afreq
+  --rm-dup exclude-all list
 
-Hostname: qlu-2
+Hostname: qlu-1
 Working directory: /z/Comp/lu_group/Members/jmiao24/Software/QUAIL
-Start time: Tue Mar 14 17:36:15 2023
+Start time: Wed Mar 15 21:40:36 2023
 
-Random number seed: 1678833375
-1031832 MiB RAM detected; reserving 515916 MiB for main workspace.
+Random number seed: 1678934436
+773800 MiB RAM detected; reserving 386900 MiB for main workspace.
 Using up to 64 threads (change this with --threads).
 3925 samples (2282 females, 1643 males; 3925 founders) loaded from
 test_data/test.fam.
 1000 variants loaded from test_data/test.bim.
 1 quantitative phenotype loaded (3925 values).
+Note: Skipping --rm-dup since no duplicate IDs are present.
 3 covariates loaded from test_data/covar_test.txt.
-Calculating allele frequencies... done.
+--read-freq: PLINK 2 --freq file detected.
+--read-freq: Frequencies for 1000 variants loaded.
 --glm linear regression on phenotype 'int_rank_score': done.
 Results written to test_data/vQTL_scan_QUAIL_vQTL.int_rank_score.glm.linear .
 
-End time: Tue Mar 14 17:36:16 2023
+End time: Wed Mar 15 21:40:36 2023

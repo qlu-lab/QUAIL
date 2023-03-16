@@ -34,4 +34,17 @@ Rscript Step2_QUAIL_vQTL.R \
 --covar test_data/covar_test.txt \
 --geno test_data/test \
 --output test_data/vQTL_scan \
+--freq test_data/test.afreq \
 --plink_path plink/plink2
+
+Rscript Step2_QUAIL_vQTL.R \
+--pheno_rs test_data/pheno_rank_score.txt \
+--covar test_data/covar_test.txt \
+--geno test_data/test \
+--output test_data/vQTL_scan \
+--plink_path plink/plink2
+
+/z/Comp/lu_group/Members/jmiao24/Software/QUAIL/plink/plink2 \
+--bfile /z/Comp/lu_group/Members/jmiao24/Software/QUAIL/test_data/test \
+--freq 
+

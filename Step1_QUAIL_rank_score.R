@@ -42,14 +42,15 @@ if (opt$num_levels %% 2 == 1) {
 
 cat("\n### Options in effect ### \n")
 cat("\n")
-cat("Rscript Obtain_rank_score.R \\ \n")
+cat("Rscript Step1_QUAIL_rank_score.R \\ \n")
 cat(paste0("--pheno ", opt$pheno, " \\ \n"))
 cat(paste0("--covar ", opt$covar, " \\ \n"))
 cat(paste0("--output ", opt$output, " \\ \n"))
 cat(paste0("--weights ", opt$weights, " \\ \n"))
 cat(paste0("--num_levels ", opt$num_levels, " \\ \n"))
-cat(paste0("--num_cores ", opt$num_cores, " \\ \n"))
-
+if (!is.na(opt$num_cores)){
+  cat(paste0("--num_cores ", opt$num_cores, " \\ \n"))
+}
 
 # Input parameters
 phenotype <- opt$pheno
